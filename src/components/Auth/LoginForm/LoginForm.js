@@ -5,6 +5,7 @@ import { authCtrl } from "../../../api";
 import { useAuth } from "../../../hooks";
 import { globalStyles } from "../../../styles";
 import { initialValues, validationSchame } from "./LoginForm.form";
+import { Layout } from "../../../layouts"
 
 export function LoginForm() {
   const { login } = useAuth();
@@ -32,7 +33,7 @@ export function LoginForm() {
   });
 
   return (
-    <View>
+    <Layout.Basic>
       <TextInput
         label="Usuario"
         style={globalStyles.form.input}
@@ -58,6 +59,6 @@ export function LoginForm() {
         Entrar
       </Button>
 
-    </View>
+    </Layout.Basic>
   );
 }

@@ -20,3 +20,4 @@ export * from "./capacitacion";
 export * from "./capacitacioncontenido";
 export * from "./capacitacionasignarevaluacion";
 export * from "./capacitacionasignarparticipante";
+export * from "./capacitacionregistro";

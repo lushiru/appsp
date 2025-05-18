@@ -58,6 +58,8 @@ const home = {
     capacitacionContenidoEditar: "capacitacioncontenido-editar",
     capacitacionAsignarEvaluacion: "capacitacionasignarevaluacion",
     capacitacionAsignarParticipante : "capacitacionasignarparticipante",
+    capacitacionRegistro : "capacitacionregistro",
+
     
   }
     

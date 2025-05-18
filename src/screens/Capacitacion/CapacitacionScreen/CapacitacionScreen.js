@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Text, ToastAndroid } from 'react-native'
+import { View, Text, ToastAndroid } from 'react-native'
 import { Button } from 'react-native-paper';
 import { screensName } from '../../../utils';
 import { Layout } from '../../../layouts';
@@ -36,9 +36,17 @@ export function CapacitacionScreen() {
   return (
     <Layout.Basic>
       <Text style={styles.titulo}>Capacitación</Text>
+      <View style={styles.contenedor}>
       <Button mode="contained" onPress={() => navigation.navigate(screensName.homeplan.capacitacionCrear)} style={styles.btn}>
             Crear Actividad
-      </Button>  
+      </Button>
+      <Button mode="contained" onPress={() => navigation.navigate(screensName.homeplan.capacitacionRegistro)} style={styles.btn}>
+            Registro Control de Actividad
+      </Button>
+      <Button mode="contained" onPress={() => navigation.navigate(screensName.homeplan.capacitacionCrear)} style={styles.btn}>
+            Crear Actividad
+      </Button>
+      </View>  
       {
 
         capacitacion ?

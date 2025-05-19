@@ -43,8 +43,8 @@ export function CapacitacionScreen() {
       <Button mode="contained" onPress={() => navigation.navigate(screensName.homeplan.capacitacionRegistro)} style={styles.btn}>
             Registro Control de Actividad
       </Button>
-      <Button mode="contained" onPress={() => navigation.navigate(screensName.homeplan.capacitacionCrear)} style={styles.btn}>
-            Crear Actividad
+      <Button mode="contained" onPress={() => navigation.navigate(screensName.homeplan.capacitacionSeguimiento)} style={styles.btn}>
+            Ver Actividades / Seguimiento
       </Button>
       </View>  
       {

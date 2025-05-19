@@ -60,7 +60,12 @@ const home = {
     capacitacionAsignarParticipante : "capacitacionasignarparticipante",
     capacitacionRegistro : "capacitacionregistro",
     capacitacionRegistroMostrar : "capacitacionregistromostrar",
-    
+    capacitacionSeguimiento: "capacitacionseguimiento",
+    capacitacionSeguimientoMostrar: "capacitacionseguimiento-mostrar",
+    notificar: "notificar",
+    notificarCrear: "notificar-crear",
+    notificarEditar: "notificar-editar",
+        
   }
     
   const account = {

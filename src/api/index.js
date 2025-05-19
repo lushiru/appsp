@@ -21,3 +21,5 @@ export * from "./capacitacioncontenido";
 export * from "./capacitacionasignarevaluacion";
 export * from "./capacitacionasignarparticipante";
 export * from "./capacitacionregistro";
+export * from "./capacitacionseguimiento";
+export * from "./notificar";

@@ -21,5 +21,9 @@ export const Menu = [
     title: "Capacitación",
     screen: screensName.homeplan.capacitacion,
   },
+  {
+    title: "Notificar",
+    screen: screensName.homeplan.notificar,
+  },
   
 ];

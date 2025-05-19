@@ -27,6 +27,8 @@ export const ENV = {
       CAPACITACIONASIGNAREVALUACION : "capacitacionasignarevaluacion",
       CAPACITACIONASIGNARPARTICIPANTE : "capacitacionasignarparticipante",
       CAPACITACIONREGISTRO : "capacitacionregistro",
+      CAPACITACIONSEGUIMIENTO : "capacitacionseguimiento",
+      NOTIFICAR : "notificar",
       
     },
     IMPRIMIR:"https://spanel.cl/spanel/api/imprimir/",

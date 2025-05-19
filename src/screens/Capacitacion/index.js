@@ -8,3 +8,5 @@ export * from "./CapacitacionAsignarEvaluacionScreen";
 export * from "./CapacitacionAsignarParticipanteScreen";
 export * from "./CapacitacionRegistroScreen";
 export * from "./CapacitacionRegistroMostrarScreen";
+export * from "./CapacitacionSeguimientoScreen";
+export * from "./CapactitacionSeguimientoMostrarScreen";

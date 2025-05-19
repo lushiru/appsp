@@ -12,8 +12,10 @@ import { MejorasScreen, MejorasCrearScreen, MejorasEditarScreen,
 import { CapacitacionScreen, CapacitacionCrearScreen, CapacitacionEditarScreen,
   CapacitacionContenidoScreen, CapacitacionContenidoCrearScreen, CapacitacionContenidoEditarScreen, 
   CapacitacionAsignarEvaluacionScreen, CapacitacionAsignarParticipanteScreen, 
-  CapacitacionRegistroScreen, CapacitacionRegistroMostrarScreen, 
+  CapacitacionRegistroScreen, CapacitacionRegistroMostrarScreen, CapacitacionSeguimientoScreen, CapactitacionSeguimientoMostrarScreen
   } from "../../screens/Capacitacion"; 
+import { NotificarScreen, NotificarCrearScreen, NotificarEditarScreen } from "../../screens/Notificar";
+
 import { screensName } from "../../utils";
 
 const Stack = createNativeStackNavigator();
@@ -56,6 +58,11 @@ export function PlanStack() {
       <Stack.Screen name={screensName.homeplan.capacitacionAsignarParticipante} component={CapacitacionAsignarParticipanteScreen} />
       <Stack.Screen name={screensName.homeplan.capacitacionRegistro} component={CapacitacionRegistroScreen} />
       <Stack.Screen name={screensName.homeplan.capacitacionRegistroMostrar} component={CapacitacionRegistroMostrarScreen} />
+      <Stack.Screen name={screensName.homeplan.capacitacionSeguimiento} component={CapacitacionSeguimientoScreen} />
+      <Stack.Screen name={screensName.homeplan.capacitacionSeguimientoMostrar} component={CapactitacionSeguimientoMostrarScreen} />
+      <Stack.Screen name={screensName.homeplan.notificar} component={NotificarScreen} />
+      <Stack.Screen name={screensName.homeplan.notificarCrear} component={NotificarCrearScreen} />
+      <Stack.Screen name={screensName.homeplan.notificarEditar} component={NotificarEditarScreen} />
     </Stack.Navigator>
   );
 }

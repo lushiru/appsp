@@ -4,11 +4,9 @@ import { Button, TextInput } from 'react-native-paper';
 import { capacitacionresgistroCtrl } from "../../../api";
 import { Layout } from "../../../layouts";
 import { Picker } from '@react-native-picker/picker';
-import { capacitacionresgistroCtrl } from "../../../api";
-import { useFormik } from "formik";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { styles } from "./CapacitacionRegistroMostrarScreen.styles"
-import { initialValues, validationSchema } from "./CapacitacionRegistroMostrarScreen.form";
+import { useNavigation } from "@react-navigation/native";
 
 const Item = Picker.Item;
 
@@ -21,12 +19,16 @@ export function CapacitacionRegistroMostrarScreen(props) {
       const idplan = params?.idplan;
       const colaborador = params?.colaborador;
 
+      const navigation = useNavigation();
+
     const [ evaluar, setEvaluar ] = useState(null);
     const [ contenido, setContenido ] = useState(null);
     const [ verificacion, setVerificacion ] = useState(null);
-    const [ fech, setFech ] = useState(null);
-    const [show, setShow] = useState(false);
+    const [show , setShow ] = useState(false);
     const cumple = useRef([]);
+    const observacion = useRef("");
+    const fecha = useRef("");
+    const porcentaje = useRef("");
       
     useEffect(() => {
         if(idplan && colaborador){getEvaluar();}                     
@@ -44,15 +46,18 @@ export function CapacitacionRegistroMostrarScreen(props) {
 
     }
 
-    const cargarCumple = async () => {
+    const cargarCumple = async (conte) => {
 
         const array = [];
 
         await evaluar?.forEach(element => { 
-            if(element.id == contenido){            
-                element.arrversubitem?.forEach(element2 => {
-                array.push({ idsubitem : element2.id, valor: "N/A"});                       
-                    })
+            if(element.id == conte){ 
+                           
+                element.arrveritem?.forEach(element2 => {
+                    element2.arrversubitem?.forEach(element3 => {
+                        array.push({ idsubitem : element3.id, valor: "N/A"}); 
+                        })                      
+                })
             }            
         });
         cumple.current = array;
@@ -72,48 +77,60 @@ export function CapacitacionRegistroMostrarScreen(props) {
         
     }
 
+    const cambiarObs = (v) => {
+        observacion.current = v;
+    } 
+
+    const cambiarPorc = (v) => {
+        porcentaje.current = v;
+    } 
+
    const EscribirEvaluacion = (props) => {   
-        
+
+          
         return (
-            <View>
-                <View key={Date.now()} style={styles.table}>
-                { evaluar.map((item,index1) => 
-                     (
+            <View key={"crmsv"+Date.now()}>
+                <View key={"crmsdn"+Date.now()} style={styles.table}>
+                { evaluar.map((item,index) => 
+                     (  
                         item.id == props.contenido ?
-                        item.registrado ? <Text>Evaluación registrada</Text> : 
-                         <>   
-                         { setVerificacion(item.id_verificacion) }
-                         <View key={"viewi"+index1}>
-                                <View key={"viewit"+index1} style={styles.table_head}>
-                                    <View key={"viewitem"+index1} style={{width:"70%"}}>
-                                        <Text key={"viewitemnombre"+index1}>{item.nombreitem}</Text>
-                                    </View>
-                                    <View key={"viewitemc"+index1} style={{width:"30%"}}>
-                                        <Text key={"viewitemcumple"+index1}>Cumple</Text>
-                                    </View>                                    
-                                </View>
-                               { item.arrversubitem?.map((item2,index2) => 
-                                        ( <View key={"viewsubitem"+index1+index2}>
-                                            <View key={"viewsubitemv"+index1+index2} style={styles.table_tar}>
-                                                <View key={"viewsubitemn"+index1+index2} style={{width:"70%"}}>
-                                                    <Text key={"viewsubitemnombre"+index1+index2}>{item2.nombresubitem}</Text>
-                                                </View>
-                                                <View key={"viewsubitemvc"+index1+index2} style={{width:"30%"}}>
-                                                    <Picker key={"picker"+index1+index2}
-                                                            selectedValue={"N/A"}
-                                                            onValueChange={(v) => {cambiarCumple(v,item2.id);} }
-                                                            >
-                                                            <Item key={"itemsi"+index1+index2} label="SI" value="SI" />    
-                                                            <Item key={"itemno"+index1+index2} label="NO" value="NO" />
-                                                            <Item key={"itemna"+index1+index2} label="N/A" value="N/A" />
-                                                    </Picker>
-                                                </View>                                                
+                        item.registrado ? <Text key={"crmstext"+index}>Evaluación registrada</Text> : 
+
+                         <View key={"crms"+index} >
+                         { item.arrveritem?.map((dato,index1) => (                         
+                                <View key={"crmsviewi"+index+""+index1}>
+                                        <View key={"crmsviewit"+index+""+index1} style={styles.table_head}>
+                                            <View key={"crmsviewitem"+index+""+index1} style={{width:"70%"}}>
+                                                <Text key={"crmsviewitemnombre"+index+""+index1}>{dato.nombreitem}</Text>
                                             </View>
-                                                                             
-                                    </View>    )
-                                )} 
-                        </View></> : ""  )
-                 )}
+                                            <View key={"crmsviewitemc"+index+""+index1} style={{width:"30%"}}>
+                                                <Text key={"crmsviewitemcumple"+index+""+index1}>Cumple</Text>
+                                            </View>                                    
+                                        </View>
+                                    { dato.arrversubitem?.map((item2,index2) => 
+                                                ( 
+                                                <View key={"crmsviewsubitem"+index+""+index1+""+index2}>
+                                                    <View key={"crmsviewsubitemv"+index+""+index1+""+index2} style={styles.table_tar}>
+                                                        <View key={"crmsviewsubitemn"+index+""+index1+""+index2} style={{width:"70%"}}>
+                                                            <Text key={"crmsviewsubitemnombre"+index+""+index1+""+index2}>{item2.nombresubitem}</Text>
+                                                        </View>
+                                                        <View key={"crmsviewsubitemvc"+index+""+index1+""+index2} style={{width:"30%"}}>
+                                                            <Picker key={"crmspicker"+index+""+index1+""+index2}
+                                                                    selectedValue={"N/A"}
+                                                                    onValueChange={(v) => {cambiarCumple(v,item2.id);} }
+                                                                    >
+                                                                    <Item key={"crmsitemsi"+index+""+index1+""+index2} label="SI" value="SI" />    
+                                                                    <Item key={"crmsitemno"+index+""+index1+""+index2} label="NO" value="NO" />
+                                                                    <Item key={"crmsitemna"+index+""+index1+""+index2} label="N/A" value="N/A" />
+                                                            </Picker>
+                                                        </View>                                                
+                                                    </View>                                                                                    
+                                                </View>    )
+                                        )} 
+                                </View>  )
+                        )}
+                        </View> : <View key={"vvvvvvv"+index}></View>
+                 ))}
                 </View>
                    
             </View>         
@@ -127,25 +144,28 @@ export function CapacitacionRegistroMostrarScreen(props) {
 
     const obtenerDatos = ({type},selectedDate) => {
         const mes = selectedDate.getMonth()+1;
-        setFech(selectedDate.getFullYear()+"-"+mes+"-"+selectedDate.getDate());
-        formik.setFieldValue("fecha", fech); 
+        fecha.current = selectedDate.getFullYear()+"-"+mes+"-"+selectedDate.getDate();
         setShow(false);
     } 
 
-    const formik = useFormik({
-              initialValues: initialValues(),
-              validationSchema: validationSchema(),
-              validateOnChange: false,
-              onSubmit: async (formValue) => {
-                const { observacion,fecha,porcentaje } = formValue;
+    const gotoGuardar = async () => {
+              
                 try {
-                  await capacitacionresgistroCtrl.crearCapacitacionRegistro(verificacion,fecha,observacion,colaborador,idplan,contenido,porcentaje,cumple.current);
-                  getEvaluar();
+                  if(fecha.current != "" && observacion.current != "" && porcentaje.current != "")
+                  await capacitacionresgistroCtrl.crearCapacitacionRegistro(verificacion,fecha.current,observacion.current,colaborador,idplan,contenido,porcentaje.current,cumple.current);
+                  navigation.goBack();
                 } catch (error) {
                   ToastAndroid.show( "Error " + error , ToastAndroid.SHORT);
                 }
-              },
-            });
+            }  
+            
+    const setearVerificacion = (v) => {
+        evaluar?.forEach(element => { 
+            if(element.id == v){ 
+                setVerificacion(element.id_verificacion);               
+            }            
+        });
+    }       
 
   return (
     <Layout.Basic>
@@ -153,14 +173,14 @@ export function CapacitacionRegistroMostrarScreen(props) {
       {
         evaluar ? 
 
-            <Picker key={"picker"}
+            <Picker key={"pickerev"}
                     selectedValue={""}
-                    onValueChange={(v) => { setContenido(v);cargarCumple(); } }
+                    onValueChange={(v) => { setContenido(v);cargarCumple(v);setearVerificacion(v); } }
                     >
-                    <Item key={"item00"} label="" value="" enable={false} />    
+                    <Item key={"item0"} label="Seleccione Evaluación" value="" enabled={false} />    
                     {
                         evaluar.map((item,index) => (
-                            <Item key={"item0"+index} label={item.id} value={item.nombreverificacion} /> 
+                            <Item key={"item0"+index} label={ item.registrado ? `${item.nombreverificacion} Registrado` : item.nombreverificacion } value={item.id} enabled={ item.registrado ? false:true }/> 
                         ))
                     }
             </Picker>
@@ -171,8 +191,9 @@ export function CapacitacionRegistroMostrarScreen(props) {
       {
         contenido ? 
             <>
-            <View>
-                <Text>{ fech ? fech : "" }</Text>
+            { !fecha.current ?
+            <>
+            
                 <Button
                 style={styles.btnFecha}
                 onPress={setear}
@@ -184,23 +205,28 @@ export function CapacitacionRegistroMostrarScreen(props) {
                     value={ new Date() }
                     onChange={obtenerDatos}
                     mode="date"
-                    /> : ""}             
-            </View>
-            <EscribirEvaluacion contenido={contenido} />
+                    /> : ""}                 
+            </> : 
+            <>
+            <Text style={styles.titulo}>{ fecha.current ? fecha.current : "" }</Text>
+            
+            <EscribirEvaluacion key={"evn"} contenido={contenido} />
+            
             <TextInput
                 label="Observaciones"
                 style={styles.input}
-                onChangeText={(text) => formik.setFieldValue("observacion", text)}
-                value={formik.values.observacion}
-                error={formik.errors.observacion}
+                onChangeText={cambiarObs}
                 />
             <TextInput
                 label="Porcentaje Asignado"
                 style={styles.input}
-                onChangeText={(text) => formik.setFieldValue("porcentaje", text)}
-                value={formik.values.porcentaje}
-                error={formik.errors.porcentaje}
-                />            
+                onChangeText={cambiarPorc}
+                /> 
+            <Button mode="contained" onPress={() => gotoGuardar()} style={styles.btn}>
+                        Guardar Evaluacion
+            </Button>  
+            </> 
+                }             
             </>                
         : ""
       } 

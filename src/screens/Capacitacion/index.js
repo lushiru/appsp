@@ -7,3 +7,4 @@ export * from "./CapacitacionContenidoEditarScreen";
 export * from "./CapacitacionAsignarEvaluacionScreen";
 export * from "./CapacitacionAsignarParticipanteScreen";
 export * from "./CapacitacionRegistroScreen";
+export * from "./CapacitacionRegistroMostrarScreen";

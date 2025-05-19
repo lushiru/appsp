@@ -3,16 +3,19 @@ import { Picker } from '@react-native-picker/picker';
 import { styles } from "./CapacitacionRegistroTarjeta.styles";
 import { useState } from 'react';
 import { Button } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
+import { screensName } from '../../../utils';
 
 const Item = Picker.Item;
 
 export function CapacitacionRegistroTarjeta({item, index }) {
 
     const [ colaborador, setColaborador ] = useState(null);
+    const navigation = useNavigation();
 
     const irIndividual = async (idplan) => {
 
-        console.log("ok");
+        if(colaborador != null) navigation.navigate(screensName.homeplan.capacitacionRegistroMostrar, {idplan: idplan, colaborador: colaborador});
         
     }
 

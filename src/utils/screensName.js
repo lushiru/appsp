@@ -59,7 +59,7 @@ const home = {
     capacitacionAsignarEvaluacion: "capacitacionasignarevaluacion",
     capacitacionAsignarParticipante : "capacitacionasignarparticipante",
     capacitacionRegistro : "capacitacionregistro",
-
+    capacitacionRegistroMostrar : "capacitacionregistromostrar",
     
   }
     

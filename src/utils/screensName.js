@@ -64,13 +64,20 @@ const home = {
     capacitacionSeguimientoMostrar: "capacitacionseguimiento-mostrar",
     notificar: "notificar",
     notificarCrear: "notificar-crear",
-    notificarEditar: "notificar-editar",
-        
+    notificarEditar: "notificar-editar",        
   }
+
+
     
   const account = {
     root: "accountRoot",
     account: "account",
+  };
+
+  const agend = {
+    root: "homeagendRoot",
+    homeagend: "homeagend",
+    documentacionVer: "documentacionVer",
   };
   
   export const screensName = {
@@ -78,4 +85,5 @@ const home = {
     home,
     homeplan,
     account,
+    agend,
   };

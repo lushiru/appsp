@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { screensName } from "../../utils";
-import { HomeStack, AccountStack, PlanStack } from "../stacks";
+import { HomeStack, AccountStack, PlanStack, AgendStack } from "../stacks";
 import { styles } from "./TabNavigation.styles";
 
 const Tab = createBottomTabNavigator();
@@ -26,6 +26,11 @@ export function TabNavigation() {
         name={screensName.homeplan.root}
         component={PlanStack}
         options={{ title: "plan" }}
+      />  
+      <Tab.Screen
+        name={screensName.agend.root}
+        component={AgendStack}
+        options={{ title: "Agend" }}
       />      
       <Tab.Screen
         name={screensName.account.root}
@@ -50,6 +55,9 @@ function setIcon(route, routeStatus) {
   }
   if (route.name === screensName.homeplan.root) {
     iconName = "bars";
+  }
+  if (route.name === screensName.agend.root) {
+    iconName = "calendar";
   }
   if (route.name === screensName.account.root) {
     iconName = "user";

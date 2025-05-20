@@ -2,7 +2,7 @@ import { screensName } from "../../utils";
 
 export const Menu = [
   {
-    title: "Documentacion",
+    title: "Documentación",
     screen: screensName.agend.documentacionVer,
   },
     

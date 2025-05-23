@@ -29,6 +29,7 @@ export const ENV = {
       CAPACITACIONREGISTRO : "capacitacionregistro",
       CAPACITACIONSEGUIMIENTO : "capacitacionseguimiento",
       NOTIFICAR : "notificar",
+      AGENDAR : "agendar",
       
     },
     IMPRIMIR:"https://spanel.cl/spanel/api/imprimir/",

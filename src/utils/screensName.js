@@ -78,6 +78,8 @@ const home = {
     root: "homeagendRoot",
     homeagend: "homeagend",
     documentacionVer: "documentacionVer",
+    agendar: "agendar",
+    agendarCrear: "agendar-crear",
   };
   
   export const screensName = {

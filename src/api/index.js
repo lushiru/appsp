@@ -23,3 +23,4 @@ export * from "./capacitacionasignarparticipante";
 export * from "./capacitacionregistro";
 export * from "./capacitacionseguimiento";
 export * from "./notificar";
+export * from "./agendar";

@@ -5,13 +5,13 @@ import { agendarCtrl } from '../../../api';
 
 const Item = Picker.Item;
 
-export function AgendarTarjeta({ item, index }) {
+export function AgendarTarjeta({ item, index, getPrioridades }) {
 
     const cambiarEstado = async (estado) => {
 
         try {                    
-                const response = await agendarCtrl.updateEstado(item.id, estado);    
-                console.log(response.resultado);
+                const response = await agendarCtrl.updateEstado(item.id, estado); 
+                getPrioridades(item.estado);
             } catch (error) {
                 ToastAndroid.show( "Error " + error , ToastAndroid.SHORT);
             }   

@@ -35,23 +35,34 @@ export function AgendarCrearScreen() {
       }    
 
     const obtenerDatos1 = ({type},selectedDate) => {
-        formik.setFieldValue("fecha", selectedDate); 
+        const fecha = selectedDate.toLocaleDateString('es-CL');
+        const partes = fecha.split("-");
+        const [dia, mes, anio] = partes;
+        formik.setFieldValue("fecha", anio+"-"+mes+"-"+dia); 
         setShow1(false);
-        const mes = selectedDate.getMonth()+1;
-        setInicio(selectedDate.toLocaleDateString());
+        setInicio(selectedDate.toLocaleDateString('es-CL'));
 
       }
     const obtenerDatos2 = ({type},selectedDate) => {
-        formik.setFieldValue("fecha2", selectedDate); 
+        const fecha = selectedDate.toLocaleDateString('es-CL');
+        const partes = fecha.split("-");
+        const [dia, mes, anio] = partes;
+        formik.setFieldValue("fecha2", anio+"-"+mes+"-"+dia); 
         setShow2(false);
-        const mes = selectedDate.getMonth()+1;
-        setTermino(selectedDate.toLocaleDateString());
+        setTermino(selectedDate.toLocaleDateString('es-CL'));
 
       }
     const obtenerDatos3 = ({type},selectedDate) => {
-        formik.setFieldValue("horaalarma", selectedDate); 
+        formik.setFieldValue("horaalarma", selectedDate.toLocaleTimeString('es-CL', {
+          timeZone: "America/Santiago",
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        })); 
         setShow3(false);
-        setHora(selectedDate.toLocaleTimeString('en-US', {
+        setHora(selectedDate.toLocaleTimeString('es-CL', {
+          timeZone: "America/Santiago",
           hour12: false,
           hour: '2-digit',
           minute: '2-digit',
@@ -124,9 +135,9 @@ export function AgendarCrearScreen() {
         { show3 ?       
         <DateTimePicker
             value={ new Date() }
-            //timeZoneName="America/Santiago"
+            timeZoneName="America/Santiago"
             onChange={obtenerDatos3}
-            //display="spinner"
+            display="spinner"
             mode="time"
             /> : ""}
       <Picker
@@ -142,9 +153,10 @@ export function AgendarCrearScreen() {
           selectedValue={""}
           onValueChange={(v) => formik.setFieldValue("prioridad", v)}
           >
-          <Item label="Prioridad" value="" />  
-          <Item label="Cumplida" value="Cumplida" />
-          <Item label="Retrasada" value="Retrasada" />
+          <Item label="Prioridad" value="" enabled={false} />  
+          <Item label="Baja" value="Baja" />
+          <Item label="Media" value="Media" />
+          <Item label="Alta" value="Alta" />
       </Picker>                 
 
       <Button

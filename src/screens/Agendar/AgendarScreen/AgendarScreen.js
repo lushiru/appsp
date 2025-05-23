@@ -43,7 +43,7 @@ export function AgendarScreen() {
 
       <Picker
           selectedValue={""}
-          onValueChange={(v) => { setEstado(v);getPrioridades(v); }}
+          onValueChange={(v) => { setEstado(v); getPrioridades(v); }}
           >
           <Item label="Sin estado" value="" />  
           <Item label="Cumplida" value="Cumplida" />
@@ -54,7 +54,7 @@ export function AgendarScreen() {
         prioridades ?
 
           prioridades.map((item, index)=>(
-            <AgendarTarjeta key={"at"+index} item={item} index={index}/>
+            <AgendarTarjeta key={"at"+index} item={item} index={index} getPrioridades={getPrioridades}/>
           ))
 
         : ""

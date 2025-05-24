@@ -38,10 +38,11 @@ export function NotificarCrearScreen() {
       }
 
     const obtenerDatos = ({type},selectedDate) => {
-        formik.setFieldValue("fecha", selectedDate); 
+        const partes = fecha.split("-");
+        const [dia, mes, anio] = partes;
+        formik.setFieldValue("fecha", anio+"-"+mes+"-"+dia);
         setShow(false);
-        const mes = selectedDate.getMonth()+1;
-        setInicio(selectedDate.toLocaleDateString());
+        setInicio(selectedDate.toLocaleDateString('es-CL'));
 
       } 
     

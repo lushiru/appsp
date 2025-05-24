@@ -80,6 +80,7 @@ const home = {
     documentacionVer: "documentacionVer",
     agendar: "agendar",
     agendarCrear: "agendar-crear",
+    veragenda: "veragenda",
   };
   
   export const screensName = {

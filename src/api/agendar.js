@@ -76,10 +76,32 @@ async function verPrioridades(estado) {
         console.error(error);
       }
     
-  }  
+  } 
+  
+  async function veragenda(mes,anio) {
+    try {
+      const url = `${ENV.API_URL}${ENV.ENDPOINTS.VERAGENDA}&mes=${mes}&anio=${anio}`;
+      const token = await storageCrtl.getToken();
+  
+      const paramsTemp = {      
+        headers: {
+          Authorization: token,          
+          },
+      };
+  
+      const response = await axios.get(url,paramsTemp);
+  
+      if (response.status !== 200) throw response;
+  
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
   
   export const agendarCtrl = {
     verPrioridades,
     crearPrioridad,
     updateEstado,
+    veragenda,
   };
